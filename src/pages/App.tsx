@@ -5,6 +5,7 @@ import "@fontsource/roboto/700.css";
 import {
 	AppBar,
 	Box,
+	Button,
 	Drawer,
 	Icon,
 	IconButton,
@@ -55,6 +56,10 @@ function App() {
 					<Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
 						Notifier
 					</Typography>
+					<Button color="inherit" onClick={() => logOut()}>
+						<Icons.Logout />
+						Logout
+					</Button>
 				</Toolbar>
 			</AppBar>
 			<Drawer
@@ -100,6 +105,11 @@ function App() {
 			</Box>
 		</>
 	);
+}
+
+function logOut() {
+	localStorage.clear();
+	location.reload();
 }
 
 export default App;
