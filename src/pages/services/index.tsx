@@ -1,16 +1,21 @@
 import { Link, useLoaderData } from "react-router";
 import { Service } from "../../types";
 import { Card, CardContent, CardHeader, Grid2 as Grid } from "@mui/material";
+import Login from "../../components/Login";
 
 export async function Loader() {
-	const services = await fetch(`${import.meta.env.VITE_SERVER_URL}/services`);
-	const data = await services.json();
+	const services = await fetch(`${import.meta.env.VITE_SERVER_URL}/services`, {
+		headers: { Authorization: localStorage["token"] },
+	});
 
+	const data = await services.json();
 	return data;
 }
 
 export default function Services() {
-	const services = useLoaderData() as Service[];
+	const services = useLoaderData() as Service[] & { error: string };
+
+	if (services.error) return <Login />;
 
 	return (
 		<>

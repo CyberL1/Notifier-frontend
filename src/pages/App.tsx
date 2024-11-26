@@ -19,6 +19,7 @@ import {
 import * as Icons from "@mui/icons-material";
 import { useState } from "react";
 import { Link, Outlet } from "react-router";
+import Login from "../components/Login";
 
 interface Item {
 	title: string;
@@ -95,7 +96,7 @@ function App() {
 				component="main"
 				sx={{ p: 2, marginLeft: isOpen ? "240px" : "56px" }}
 			>
-				<Outlet />
+				{localStorage["server"] ? <Outlet /> : <Login />}
 			</Box>
 		</>
 	);

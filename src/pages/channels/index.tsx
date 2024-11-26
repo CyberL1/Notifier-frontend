@@ -1,16 +1,21 @@
 import { Link, useLoaderData } from "react-router";
 import { Channel } from "../../types";
 import { Card, CardContent, CardHeader, Grid2 as Grid } from "@mui/material";
+import Login from "../../components/Login";
 
 export async function Loader() {
-	const channels = await fetch(`${import.meta.env.VITE_SERVER_URL}/channels`);
-	const data = await channels.json();
+	const channels = await fetch(`${import.meta.env.VITE_SERVER_URL}/channels`, {
+		headers: { Authorization: localStorage["token"] },
+	});
 
+	const data = await channels.json();
 	return data;
 }
 
 export default function Channels() {
-	const channels = useLoaderData() as Channel[];
+	const channels = useLoaderData() as Channel[] & { error: string };
+
+	if (channels.error) return <Login />;
 
 	return (
 		<>
