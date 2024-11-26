@@ -20,8 +20,16 @@ export default function Channels() {
 						key={channel.id}
 						component={Link}
 						to={`/channels/${channel.id}`}
+						sx={{ width: 384, height: 150 }}
 					>
-						<CardHeader title={channel.name} />
+						<CardHeader
+							title={channel.name}
+							sx={{
+								textOverflow: "elipsis",
+								overflow: "hidden",
+								whiteSpace: "nowrap",
+							}}
+						/>
 						<CardContent>
 							Type: {channel.type}
 							<br />

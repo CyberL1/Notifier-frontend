@@ -20,8 +20,16 @@ export default function Services() {
 						key={service.id}
 						component={Link}
 						to={`/services/${service.id}`}
+						sx={{ width: 384, height: 150 }}
 					>
-						<CardHeader title={service.name} />
+						<CardHeader
+							title={service.name}
+							sx={{
+								textOverflow: "elipsis",
+								overflow: "hidden",
+								whiteSpace: "nowrap",
+							}}
+						/>
 						<CardContent>
 							Type: {service.type}
 							<br />
