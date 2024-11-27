@@ -1,4 +1,4 @@
-import { Box, Button, TextField } from "@mui/material";
+import { Button, Paper, TextField } from "@mui/material";
 
 export default function Login() {
 	async function onSubmit(e) {
@@ -24,20 +24,26 @@ export default function Login() {
 	}
 
 	return (
-		<Box
+		<Paper
 			component="form"
 			autoComplete="off"
 			onSubmit={onSubmit}
 			sx={{
 				display: "flex",
 				flexDirection: "column",
-				alignItems: "center",
-				justifyContent: "center",
+				margin: "auto",
+				width: 300,
+				height: 150,
 			}}
 		>
-			<TextField label="Server" name="server" />
-			<TextField label="password" type="password" name="password" />
+			<TextField label="Server" name="server" variant="filled" />
+			<TextField
+				label="password"
+				type="password"
+				name="password"
+				variant="filled"
+			/>
 			<Button type="submit">Log in</Button>
-		</Box>
+		</Paper>
 	);
 }
