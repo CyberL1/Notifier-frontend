@@ -1,10 +1,11 @@
 import { Button, Paper, TextField } from "@mui/material";
+import { FormEvent } from "react";
 
 export default function Login() {
-	async function onSubmit(e) {
+	async function onSubmit(e: FormEvent) {
 		e.preventDefault();
 
-		const formData = new FormData(e.target);
+		const formData = new FormData(e.target as HTMLFormElement);
 		const data = Object.fromEntries(formData);
 
 		const auth = await fetch(`${data.server}/auth/callback`, {
