@@ -21,6 +21,7 @@ import * as Icons from "@mui/icons-material";
 import { useState } from "react";
 import { Link, Outlet } from "react-router";
 import Login from "../components/Login";
+import ErrorPage from "./Error";
 
 interface Item {
 	title: string;
@@ -35,7 +36,7 @@ const sidebarItems: Item[] = [
 
 const drawerWidth = 240;
 
-function App() {
+function App({ error }: { error?: boolean }) {
 	const [isOpen, setOpen] = useState(false);
 
 	return (
@@ -101,6 +102,7 @@ function App() {
 				component="main"
 				sx={{ p: 2, marginLeft: isOpen ? "240px" : "56px" }}
 			>
+				{error && <ErrorPage />}
 				{localStorage["server"] ? <Outlet /> : <Login />}
 			</Box>
 		</>
