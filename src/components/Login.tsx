@@ -36,7 +36,12 @@ export default function Login() {
 				height: 150,
 			}}
 		>
-			<TextField label="Server" name="server" variant="filled" />
+			<TextField
+				label="Server"
+				name="server"
+				variant="filled"
+				value={localStorage["server"]}
+			/>
 			<TextField
 				label="password"
 				type="password"

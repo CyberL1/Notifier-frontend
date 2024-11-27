@@ -4,12 +4,14 @@ import { Card, CardContent, CardHeader, Grid2 as Grid } from "@mui/material";
 import Login from "../../components/Login";
 
 export async function Loader() {
-	const services = await fetch(`${import.meta.env.VITE_SERVER_URL}/services`, {
-		headers: { Authorization: localStorage["token"] },
-	});
+	if (localStorage["server"]) {
+		const services = await fetch(`${localStorage["server"]}/services`, {
+			headers: { Authorization: localStorage["token"] },
+		});
 
-	const data = await services.json();
-	return data;
+		const data = await services.json();
+		return data;
+	}
 }
 
 export default function Services() {
