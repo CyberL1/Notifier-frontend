@@ -41,7 +41,7 @@ export default function Login() {
 				label="Server"
 				name="server"
 				variant="filled"
-				value={localStorage["server"]}
+				defaultValue={localStorage["server"]}
 			/>
 			<TextField
 				label="password"
