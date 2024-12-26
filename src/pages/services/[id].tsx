@@ -40,24 +40,28 @@ export default function ServicePage() {
 				name="name"
 				variant="filled"
 				defaultValue={service.name}
+				required
 			/>
 			<TextField
 				label="Type"
 				name="type"
 				variant="filled"
 				defaultValue={service.type}
+				required
 			/>
 			<TextField
 				label="Channel ID"
 				name="channelId"
 				variant="filled"
 				defaultValue={service.channelId}
+				required
 			/>
 			<TextField
 				label="Schedule"
 				name="schedule"
 				variant="filled"
 				defaultValue={service.schedule}
+				required
 			/>
 			<Button type="submit">Save</Button>
 		</Paper>

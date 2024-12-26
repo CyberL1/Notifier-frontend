@@ -14,12 +14,14 @@ import {
 	ListItemButton,
 	ListItemIcon,
 	ListItemText,
+	Menu,
+	MenuItem,
 	Toolbar,
 	Typography,
 } from "@mui/material";
 import * as Icons from "@mui/icons-material";
-import { useState } from "react";
-import { Link, Outlet } from "react-router";
+import { MouseEvent, useState } from "react";
+import { Link, Outlet, useNavigate } from "react-router";
 import Login from "../components/Login";
 import ErrorPage from "./Error";
 
@@ -37,7 +39,11 @@ const sidebarItems: Item[] = [
 const drawerWidth = 240;
 
 function App({ error }: { error?: boolean }) {
+	const [menuAnchor, setMenuAnchor] = useState<null | HTMLElement>(null);
+	const isAddMenuOpen = Boolean(menuAnchor);
+
 	const [isOpen, setOpen] = useState(false);
+	const navigate = useNavigate();
 
 	return (
 		<>
@@ -57,6 +63,21 @@ function App({ error }: { error?: boolean }) {
 					<Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
 						Notifier
 					</Typography>
+					<IconButton color="inherit" onClick={(e) => toggleMenu(e)}>
+						<Icons.Add />
+					</IconButton>
+					<Menu
+						anchorEl={menuAnchor}
+						open={isAddMenuOpen}
+						onClose={() => setMenuAnchor(null)}
+					>
+						<MenuItem onClick={() => closeMenuAndNavigate("/new/service")}>
+							Servive
+						</MenuItem>
+						<MenuItem onClick={() => closeMenuAndNavigate("/new/channel")}>
+							Channel
+						</MenuItem>
+					</Menu>
 					<Button color="inherit" onClick={() => logOut()}>
 						<Icons.Logout />
 						Logout
@@ -107,6 +128,15 @@ function App({ error }: { error?: boolean }) {
 			</Box>
 		</>
 	);
+
+	function toggleMenu(e: MouseEvent<HTMLButtonElement>) {
+		setMenuAnchor(e.currentTarget);
+	}
+
+	function closeMenuAndNavigate(to: string) {
+		setMenuAnchor(null);
+		navigate(to);
+	}
 }
 
 function logOut() {
